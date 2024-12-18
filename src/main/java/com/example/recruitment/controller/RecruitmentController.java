@@ -30,4 +30,11 @@ public class RecruitmentController {
         return recruitmentService.getRecruitment(id);
     }
 
+    //특정 아이디의 공고 정보를 변경
+    @PutMapping("/recruitments/{id}")
+    public RecruitmentDto.Response getRecruitment(@PathVariable Long id,
+                                                  @RequestBody RecruitmentDto.Request request) {
+        return recruitmentService.modifyRecruitment(id, request);
+    }
+
 }

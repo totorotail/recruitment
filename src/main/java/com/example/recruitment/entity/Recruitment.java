@@ -61,4 +61,13 @@ public class Recruitment {
                 .companyName(this.companyMember.getCompanyName())
                 .build();
     }
+
+    public Recruitment update(RecruitmentDto.Request request) {
+        this.title = request.title();
+        this.recruitmentCount = request.recruitmentCount();
+        this.closingDate = request.closingDate();
+        this.status = request.status();
+
+        return this;
+    }
 }
