@@ -1,5 +1,6 @@
 package com.example.recruitment.entity;
 
+import com.example.recruitment.dto.RecruitmentDto;
 import com.example.recruitment.enums.RecruitmentStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -45,5 +46,19 @@ public class Recruitment {
 
     public void opening() {
         this.status = RecruitmentStatus.OPEN;
+    }
+
+    public RecruitmentDto.Response toDto() {
+        return RecruitmentDto.Response.builder()
+                .id(this.id)
+                .title(this.title)
+                .recruitmentCount(this.recruitmentCount)
+                .closingDate(this.closingDate)
+                .status(this.status)
+                .modifyDate(this.modifyDate)
+                .postingDate(this.postingDate)
+                .companyMemberId(this.companyMember.getId())
+                .companyName(this.companyMember.getCompanyName())
+                .build();
     }
 }
