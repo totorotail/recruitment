@@ -1,12 +1,12 @@
 package com.example.recruitment.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,4 +14,10 @@ public class Member {
     private Long id;
     private String name;
     private String loginId;
+
+    @Builder
+    Member(String name, String loginId) {
+        this.name = name;
+        this.loginId = loginId;
+    }
 }
