@@ -54,4 +54,18 @@ public class RecruitmentService {
 
         return recruitment.update(request).toDto();
     }
+
+    @Transactional
+    public void deleteRecruitment(Long id, String companyLoginId) {
+        Recruitment recruitment = recruitmentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("해당하는 공고 없음"));
+
+        if (!Objects.equals(recruitment.getCompanyMember().getLoginId(), companyLoginId)) {
+            throw new RuntimeException("잘못된 기업회원 정보 입니다");
+        }
+
+        recruitmentRepository.delete(recruitment);
+    }
+
+
 }

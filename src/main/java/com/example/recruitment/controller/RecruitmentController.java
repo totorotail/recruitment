@@ -37,4 +37,11 @@ public class RecruitmentController {
         return recruitmentService.modifyRecruitment(id, request);
     }
 
+    //특정 아이디의 공고를 삭제
+    @DeleteMapping("/recruitments/{id}")
+    public String deleteRecruitment(@PathVariable Long id, @RequestParam String companyLoginId) {
+        recruitmentService.deleteRecruitment(id, companyLoginId);
+        return "삭제 완료";
+    }
+
 }
