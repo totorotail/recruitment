@@ -1,5 +1,7 @@
 package com.example.recruitment.utils;
 
+import com.example.recruitment.Exception.CustomException;
+import com.example.recruitment.Exception.ErrorCode;
 import com.example.recruitment.entity.Education;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -26,8 +28,7 @@ public class EducationListJsonConverter implements AttributeConverter<List<Educa
         try {
             return objectMapper.writeValueAsString(attribute);
         } catch (JsonProcessingException e) {
-            // TODO 에러 핸들링 구현 예정
-            throw new RuntimeException("error converting list to json", e);
+            throw new CustomException(ErrorCode.CONVERT_ERROR);
         }
     }
 
@@ -40,8 +41,7 @@ public class EducationListJsonConverter implements AttributeConverter<List<Educa
             return objectMapper.readValue(dbData, new TypeReference<>() {
             });
         } catch (JsonProcessingException e) {
-            // TODO 에러 핸들링 구현 예정
-            throw new RuntimeException("error converting json to list", e);
+            throw new CustomException(ErrorCode.CONVERT_ERROR);
         }
     }
 }

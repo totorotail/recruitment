@@ -1,10 +1,8 @@
 package com.example.recruitment.entity;
 
+import com.example.recruitment.enums.ApplicationStatus;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -12,13 +10,16 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Application {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "application_id")
     private Long id;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private ApplicationStatus status;
     @CreationTimestamp
     private LocalDateTime appliedDate;
 
